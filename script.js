@@ -1,22 +1,5 @@
-////// Add new To do task to list //////
 
-// addButton.addEventListener("click", function() {
-    //     if(inputField.value === ""){
-        //         alert("Task cannot be empty")
-        //     } else {
-            //         let paragraph = document.createElement('p');
-            //         toDoTask.appendChild(paragraph);
-            //         paragraph.innerHTML = inputField.value;
-            //     }
-            //     inputField.value = "";
-            //     // const trashButton = document.createElement('button');
-            //     // trashButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
-            //     // toDoContainer.appendChild(trashButton);
-            // })
-
-
-
-//Variables && Selectors
+//Variables && Selectors //
 
     const inputField = document.getElementById("input-field");
     const addButton = document.getElementById("add-button");
@@ -31,6 +14,7 @@
     
 
 //functions //
+
         // add new to do //
 
     function addToDo(event) {
