@@ -3,23 +3,22 @@ body {
   padding: 0;
 
   background: linear-gradient(
-    90deg,
-    rgba(170, 236, 228, 1) 16%,
-    rgba(142, 255, 239, 1) 42%,
-    rgba(170, 236, 228, 1) 100% /* rgba(202, 155, 235, 1) 100% */
+    to bottom right,
+    rgba(84, 87, 101, 1) 0%,
+    rgba(78, 97, 150, 1) 100%
   );
   color: rgb(70, 68, 68);
 
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   flex-direction: column;
   font-family: roboto;
 }
 .large-container {
   background: #fff;
-  height: 70vh;
+  min-height: 70vh;
   width: 40vw;
   display: flex;
   justify-content: flex-start;
@@ -32,8 +31,10 @@ body {
     rgba(255, 255, 255, 0.2)
   );
   z-index: 3;
-  backdrop-filter: blur(4rem);
+  backdrop-filter: blur(5rem);
+  margin-bottom: 3rem;
 }
+
 .circle1,
 .circle2 {
   background: #fff;
@@ -46,18 +47,19 @@ body {
   width: 20rem;
   position: absolute;
   border-radius: 50%;
+  z-index: 2;
 }
 .circle1 {
   top: 5%;
   right: 25%;
   background: rgba(202, 155, 235, 1);
-  opacity: 0.6;
+  opacity: 0.4;
 }
 .circle2 {
   bottom: 5%;
   left: 25%;
   background: rgba(202, 155, 235, 1);
-  opacity: 0.6;
+  opacity: 0.4;
 }
 
 .container {
@@ -91,7 +93,7 @@ h1 {
 }
 #add-button {
   font-size: 28px;
-  color: rgba(202, 155, 235, 1);
+  color: rgba(78, 97, 150, 1);
 }
 #to-do-container {
   width: 80%;
@@ -105,9 +107,45 @@ ul {
 li p {
   line-height: 1.5;
   border-bottom: 1px solid rgba(202, 155, 235, 1);
-  padding-left: 1rem;
+  padding-left: 
   font-size: 16px;
   letter-spacing: 0.15rem;
   font-weight: 300;
   text-transform: capitalize;
+}
+.todo {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  border-bottom: 1px solid rgba(78, 97, 150, 1);
+  transition: all 0.5s ease;
+  padding-left: 1rem;
+}
+.todo li {
+  flex: 1;
+}
+.trash-btn,
+.complete-btn {
+  cursor: pointer;
+  border: none;
+  margin: 0.25rem;
+  background: none;
+  font-size: 20px;
+  padding-right: .25rem;
+}
+.fa-trash-alt,
+.fa-check-square {
+  pointer-events: none;
+  color: rgba(78, 97, 150, 1);
+  
+}
+.completed {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+.fall {
+  transform: translateY(8rem) rotateZ(20deg);
+  opacity: 0;
 }
