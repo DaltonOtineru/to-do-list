@@ -12,10 +12,17 @@
     addButton.addEventListener("click", addToDo);
     toDoList.addEventListener("click", deleteCheck);
     
-
+// Enable enter to add to do task //
+    
+    inputField.addEventListener("keyup", function(event){
+        if (event.keyCode === 13) {
+            document.getElementById("add-button").click();
+        }
+    });
+    
 //functions //
 
-        // add new to do //
+    // add new to do //
 
     function addToDo(event) {
     if(inputField.value === ""){
@@ -67,15 +74,6 @@ function deleteCheck(e) {
     }
 }
         
-// Enable enter to add to do task //
-
-inputField.addEventListener("keyup", function(event){
-    if (event.keyCode === 13) {
-        document.getElementById("add-button").click();
-    }
-});
-
-
 ////// Local Storage ////////
 
 // save to dos to local storage //
@@ -111,8 +109,7 @@ function removeLocalToDos(todo) {
 
 function getToDos(){
     let todos;
-    if(localStorage.getItem('todos') === null){
-        todos = [];
+    if(localStorage.getItem('todos' === null)){
     } else {
         todos = JSON.parse(localStorage.getItem('todos'));
     }
@@ -144,13 +141,31 @@ function getToDos(){
     toDoList.appendChild(toDoDiv);
 });
 }
-    
-    
+
+
+if(localStorage.getItem("todo") == undefined){
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
+        .then(response => response.json())
+        .then(jsonData => {
+            let todos = [];
+            jsonData.forEach(function(todo){
+                todos.push(todo.title)
+            })
+            localStorage.setItem("todos", JSON.stringify(todos));
+        })
+}
 
 
 
 
-    
+
+
+
+
+
+
+
+
 
 
 
