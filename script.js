@@ -3,11 +3,11 @@
 
     const inputField = document.getElementById("input-field");
     const addButton = document.getElementById("add-button");
-    let toDoContainer = document.getElementById("to-do-container");
-    let toDoTask = document.getElementById("to-do-task");
-    let toDoList = document.getElementById("to-do-list");
+    const toDoList = document.getElementById("to-do-list");
+
 
  //event listeners
+    
     document.addEventListener("DOMContentLoaded", getToDos);
     addButton.addEventListener("click", addToDo);
     toDoList.addEventListener("click", deleteCheck);
@@ -25,34 +25,34 @@
     // add new to do //
 
     function addToDo(event) {
-    if(inputField.value === ""){
-        alert("Please enter a task :)");
-    } else {
-    event.preventDefault();
-    //todo div
-    const toDoDiv = document.createElement("div");
-    toDoDiv.classList.add("todo");
-    //li
-    const newToDo = document.createElement("li");
-    newToDo.classList.add("todo-item");
-    newToDo.innerHTML = inputField.value;
-    //append
-    toDoDiv.appendChild(newToDo);
-    // check btn
-    const completedButton = document.createElement("button");
-    completedButton.innerHTML = '<i class="far fa-check-square"></i>';
-    completedButton.classList.add("complete-btn");
-    toDoDiv.appendChild(completedButton);
-    // add todo to local storage
-    saveLocalTodos(inputField.value);
-    // trash button
-    const trashButton = document.createElement("button");
-    trashButton.classList.add("trash-btn");
-    trashButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
-    toDoDiv.appendChild(trashButton);
-    // append list
-    toDoList.appendChild(toDoDiv);}
-    inputField.value = "";
+        if(inputField.value === ""){
+            alert("Please enter a task :)");
+        } else {
+        event.preventDefault();
+        //todo div
+        const toDoDiv = document.createElement("div");
+        toDoDiv.classList.add("todo");
+        //li
+        const newToDo = document.createElement("li");
+        newToDo.classList.add("todo-item");
+        newToDo.innerHTML = inputField.value;
+        //append
+        toDoDiv.appendChild(newToDo);
+        // check btn
+        const completedButton = document.createElement("button");
+        completedButton.innerHTML = '<i class="far fa-check-square"></i>';
+        completedButton.classList.add("complete-btn");
+        toDoDiv.appendChild(completedButton);
+        // add todo to local storage
+        saveLocalTodos(inputField.value);
+        // trash button
+        const trashButton = document.createElement("button");
+        trashButton.classList.add("trash-btn");
+        trashButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        toDoDiv.appendChild(trashButton);
+        // append list
+        toDoList.appendChild(toDoDiv);}
+        inputField.value = "";
 }
 
     // Delete to do //
@@ -109,7 +109,8 @@ function removeLocalToDos(todo) {
 
 function getToDos(){
     let todos;
-    if(localStorage.getItem('todos' === null)){
+    if(localStorage.getItem("todos" === null)){
+        todos = [];
     } else {
         todos = JSON.parse(localStorage.getItem('todos'));
     }
@@ -139,34 +140,19 @@ function getToDos(){
     toDoDiv.appendChild(trashButton);
     // append list
     toDoList.appendChild(toDoDiv);
-});
+    });
 }
 
 
-if(localStorage.getItem("todo") == undefined){
+if(localStorage.getItem("todos") === null){
     fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
-        .then(response => response.json())
-        .then(jsonData => {
-            let todos = [];
-            jsonData.forEach(function(todo){
-                todos.push(todo.title)
-            })
-            localStorage.setItem("todos", JSON.stringify(todos));
+    .then(response => response.json())
+    .then(jsonData => {
+        let todos = [];
+        jsonData.forEach(function(todo){
+            todos.push(todo.title)
         })
+        localStorage.setItem("todos", JSON.stringify(todos));
+    })
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
