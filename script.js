@@ -109,8 +109,9 @@ function removeLocalToDos(todo) {
 
 function getToDos(){
     let todos;
-    if(localStorage.getItem("todos" === null)){
-        todos = [];
+    if(localStorage.getItem("todos") === null){
+        placeholderTasks();
+        console.log('hey');
     } else {
         todos = JSON.parse(localStorage.getItem('todos'));
     }
@@ -143,16 +144,22 @@ function getToDos(){
     });
 }
 
-
-if(localStorage.getItem("todos") === null){
-    fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
-    .then(response => response.json())
-    .then(jsonData => {
-        let todos = [];
-        jsonData.forEach(function(todo){
-            todos.push(todo.title)
+function placeholderTasks(){
+    if(localStorage.getItem("todos") === null){
+        fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
+        .then(response => response.json())
+        .then(jsonData => {
+            let todos = [];
+            jsonData.forEach(function(todo){
+                todos.push(todo.title)
+            })
+            localStorage.setItem("todos", JSON.stringify(todos));
+            getToDos();
+            console.log('hey');
         })
-        localStorage.setItem("todos", JSON.stringify(todos));
-    })
-}
-        
+   }
+}            
+
+
+
+
